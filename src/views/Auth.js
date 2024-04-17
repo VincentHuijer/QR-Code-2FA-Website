@@ -1,11 +1,23 @@
-import { useEffect, useState } from "react";
+import { useContext, useEffect, useState } from "react";
 import { supabase } from "../lib/helper/supabaseClient";
-
+import { SessionContext } from "./components/contexts/SessionContext";
 
 const Auth = () => {
   const [email, setEmail] = useState('')
   const [password, setPassword] = useState('')
   const [loading, setLoading] = useState(false)
+  const { session, setSession } = useContext(SessionContext);
+
+  useEffect(() => {
+    supabase.auth.getSession().then(({ data: { session } }) => {
+      setSession(session)
+    })
+
+
+    supabase.auth.onAuthStateChange((_event, session) => {
+      setSession(session)
+    })
+  }, [])
 
   async function signInWithEmail() {
     setLoading(true);
@@ -44,9 +56,22 @@ const Auth = () => {
             onChange={(e) => setPassword(e.target.value)}
           />
         </div>
+        <div>
+
         <button onClick={signInWithEmail} disabled={loading}>
           {loading ? 'Logging in...' : 'Log in'}
         </button>
+
+        </div>
+        <div>
+        <button onClick={() => supabase.auth.signOut()} disabled={loading}>
+          logout  
+        </button>
+
+        </div>
+        <div>
+          {session ? 'authenticated' : 'not authenticated'}
+        </div>
     </div>
   );
 }
