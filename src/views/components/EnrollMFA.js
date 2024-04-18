@@ -55,8 +55,6 @@ const { data } = response;
 
       setFactorId(data.id)
 
-      // Supabase Auth returns an SVG QR code which you can convert into a data
-      // URL that you can place in an <img> tag.
       setQR(data.totp.qr_code)
     })()
   }, [])
