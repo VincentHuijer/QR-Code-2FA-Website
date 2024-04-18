@@ -33,13 +33,13 @@ const Auth = () => {
     } catch (error) {
       console.log(error.message);
     }
-    console.log()
     setLoading(false);
   }
 
   return (
     <div>
-      <h2>Login</h2>
+          <h1 className="text-3xl font-bold underline">
+Login</h1>
         <div>
           <label>Email:</label>
           <input
