@@ -6,6 +6,7 @@ import Homepage from './views/Homepage';
 import Auth from './views/Auth';
 import AuthRegistration from './views/AuthRegistration';
 import { SessionProvider } from './views/components/contexts/SessionContext';
+import { EnrollMFA } from './views/components/EnrollMFA';
 
 
 function App() {
@@ -18,6 +19,7 @@ function App() {
           <Route path="/" element={<Homepage />} />
           <Route path="/auth" element={<Auth />} />
           <Route path="/authRegistration" element={<AuthRegistration />} />
+          <Route path="/enrollMFA" element={<EnrollMFA/>}/>
         </Routes>
       </Router>
     </SessionProvider>

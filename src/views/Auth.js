@@ -1,12 +1,18 @@
 import { useContext, useEffect, useState } from "react";
 import { supabase } from "../lib/helper/supabaseClient";
 import { SessionContext } from "./components/contexts/SessionContext";
+import QRCode from "react-qr-code";
 
 const Auth = () => {
   const [email, setEmail] = useState('')
   const [password, setPassword] = useState('')
   const [loading, setLoading] = useState(false)
   const { session, setSession } = useContext(SessionContext);
+
+
+  useEffect(() => {
+    supabase.auth.mfa.enroll();
+  })
 
   useEffect(() => {
     supabase.auth.getSession().then(({ data: { session } }) => {
@@ -71,6 +77,15 @@ const Auth = () => {
         <div>
           {session ? 'authenticated' : 'not authenticated'}
         </div>
+
+        {/* <div style={{ height: "auto", maxWidth: 64, width: "100%" }}>
+    <QRCode
+    size={256}
+    style={{ height: "auto", maxWidth: "100%", width: "100%" }}
+    value={"balls"}
+    viewBox={`0 0 256 256`}
+    />
+</div> */}
     </div>
   );
 }
