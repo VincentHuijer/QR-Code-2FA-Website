@@ -1,7 +1,7 @@
 import { useContext, useEffect, useState } from "react";
 import { supabase } from "../lib/helper/supabaseClient";
 import { SessionContext } from "./components/contexts/SessionContext";
-import QRCode from "react-qr-code";
+import { EnrollMFA } from "./components/EnrollMFA";
 
 const Auth = () => {
   const [email, setEmail] = useState('')
@@ -10,18 +10,20 @@ const Auth = () => {
   const { session, setSession } = useContext(SessionContext);
 
 
-  useEffect(() => {
-    supabase.auth.mfa.enroll();
-  })
+  // useEffect(() => {
+  //   supabase.auth.mfa.enroll();
+  // })
 
   useEffect(() => {
     supabase.auth.getSession().then(({ data: { session } }) => {
       setSession(session)
+      console.log(session)
     })
 
 
     supabase.auth.onAuthStateChange((_event, session) => {
       setSession(session)
+      console.log(session)
     })
   }, [])
 
@@ -75,17 +77,15 @@ const Auth = () => {
 
         </div>
         <div>
-          {session ? 'authenticated' : 'not authenticated'}
+          {session ? 'authenticated ✔️ '  : 'not authenticated ❌'}
         </div>
 
-        {/* <div style={{ height: "auto", maxWidth: 64, width: "100%" }}>
-    <QRCode
-    size={256}
-    style={{ height: "auto", maxWidth: "100%", width: "100%" }}
-    value={"balls"}
-    viewBox={`0 0 256 256`}
-    />
-</div> */}
+        <EnrollMFA 
+          onEnrolled={() => {}}
+          onCancelled={() => {}}
+        />
+
+      
     </div>
   );
 }

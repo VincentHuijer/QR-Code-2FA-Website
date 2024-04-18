@@ -70,8 +70,12 @@ const { data } = response;
         value={verifyCode}
         onChange={(e) => setVerifyCode(e.target.value.trim())}
       />
-      <input type="button" value="Enable" onClick={onEnableClicked} />
-      <input type="button" value="Cancel" onClick={onCancelled} />
+      <div>
+        <input type="button" value="Enable" onClick={onEnableClicked} />
+      </div>
+      <div>
+        <input type="button" value="Cancel" onClick={onCancelled} />
+      </div>
     </>
   )
 }
