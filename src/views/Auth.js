@@ -48,6 +48,15 @@ const Auth = () => {
   return (
     <div className="flex flex-col items-center bg-[#1C1C1E]">
     <div className=" w-9/12">
+
+    {session && (
+      <EnrollMFA 
+        onEnrolled={() => {}}
+        onCancelled={() => {}}
+      />
+    )}
+    {!session && (
+      <div>
     <img src={FitnessLogo} alt="FitnessLogo" className="mt-10 rounded-full border-5 border-white w-50 h-50"/>
       <div className="text-4xl font-bold text-white text-center mt-5">MoggingFitness</div>
       <div className="text-3xl font-bold text-white text-center mt-3">Login</div>
@@ -86,14 +95,16 @@ const Auth = () => {
         <div className="text-2xl text-white" >
           status:  {session ? 'authenticated ✔️ '  : 'not authenticated ❌'}
         </div>
-        {session &&
+        {/* {session &&
           <EnrollMFA 
             onEnrolled={() => {}}
             onCancelled={() => {}}
           />
-        }
+        } */}
         </div>
-      </div>
+    )}
+    </div>
+    </div>
   );
 }
 

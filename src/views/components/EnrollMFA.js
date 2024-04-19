@@ -16,6 +16,11 @@ export function EnrollMFA({ onEnrolled, onCancelled }) {
   const [verifyCode, setVerifyCode] = useState('') // contains the code entered by the user
   const [error, setError] = useState('') // holds an error message
 
+  const logOut = () => {
+    console.log('pressed log out')
+    supabase.auth.signOut()
+  }
+
   const onEnableClicked = () => {
     setError('')
     ;(async () => {
@@ -62,17 +67,20 @@ const { data } = response;
   return (
     <>
       {error && <div className="error">{error}</div>}
-      <img src={qr} alt="QR code"/>
+      <img src={qr} alt="QR code" className="mx-auto mb-10 flex w-full"/>
       <input
         type="text"
         value={verifyCode}
         onChange={(e) => setVerifyCode(e.target.value.trim())}
+        className='w-full placeholder-[#9CA3AF] text-white bg-[#1C1C1E]'
+        placeholder="enter token"
       />
       <div>
-        <input type="button" value="Enable" onClick={onEnableClicked} />
+        <div className="border-b-2 border-[#9CA3AF] mb-10"/>
+        <input className="bg-[#2CB3FC] w-full p-2 rounded-sm" type="button" value="Enable" onClick={onEnableClicked} />
       </div>
-      <div>
-        <input type="button" value="Cancel" onClick={onCancelled} />
+      <div className="mt-5">
+        <input className="bg-[#2CB3FC] w-full p-2 rounded-sm" type="button" value="Cancel" onClick={logOut} />
       </div>
     </>
   )
