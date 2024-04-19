@@ -81,7 +81,6 @@ const Auth = () => {
               placeholder="Enter Password"
             />
             <div className="border-b-2 border-[#9CA3AF] mt-1">
-
             </div>
           </div>
           <button className='bg-[#2CB3FC] w-full mt-10 p-2 rounded-sm' onClick={signInWithEmail} disabled={loading}>
