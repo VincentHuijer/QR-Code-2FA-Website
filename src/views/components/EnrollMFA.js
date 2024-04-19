@@ -67,16 +67,18 @@ const { data } = response;
   return (
     <>
       {error && <div className="error">{error}</div>}
-      <img src={qr} alt="QR code" className="mx-auto mb-10 flex w-full"/>
-      <input
-        type="text"
-        value={verifyCode}
-        onChange={(e) => setVerifyCode(e.target.value.trim())}
-        className='w-full placeholder-[#9CA3AF] text-white bg-[#1C1C1E]'
-        placeholder="enter token"
-      />
-      <div>
+      <img src={qr} alt="QR code" className="mx-auto mb-10 flex w-full mt-10"/>
+      <div className="w-11/12 mx-auto">
+        <input
+          type="text"
+          value={verifyCode}
+          onChange={(e) => setVerifyCode(e.target.value.trim())}
+          className='w-full placeholder-[#9CA3AF] text-white bg-[#1C1C1E]'
+          placeholder="enter token"
+        />
         <div className="border-b-2 border-[#9CA3AF] mb-10"/>
+      </div>
+      <div className="mb-6 mt-52">
         <input className="bg-[#2CB3FC] w-full p-2 rounded-sm" type="button" value="Enable" onClick={onEnableClicked} />
       </div>
       <div className="mt-5">
