@@ -48,15 +48,17 @@ const Auth = () => {
   return (
     <div className="flex flex-col items-center bg-[#1C1C1E]">
     <div className=" w-9/12">
-    <img src={FitnessLogo} alt="FitnessLogo"/>
-      <div className="text-4xl font-bold ">Login</div>
+    <img src={FitnessLogo} alt="FitnessLogo" className="mt-10 rounded-full border-5 border-white"/>
+      <div className="text-5xl font-bold text-white text-center">MoggingFitness</div>
+      <div className="text-4xl font-bold text-white text-center">Login</div>
         <div>
-          <label>Email:</label>
+          <label className="text-[#9CA3AF] font-bold">Email</label>
           <input
-            className='border border-black w-full outline-none p-2'
+            className='w-full placeholder-[#9CA3AF] text-white bg-[#1C1C1E] border-b-2 border-[#9CA3AF]'
             type="email"
             value={email}
             onChange={(e) => setEmail(e.target.value)}
+            placeholder="enter email"
           />
         </div>
         <div>
@@ -66,6 +68,7 @@ const Auth = () => {
             type="password"
             value={password}
             onChange={(e) => setPassword(e.target.value)}
+            placeholder="password"
           />
         </div>
         <button className='bg-[#5BE432] w-full mt-10 rounded-md' onClick={signInWithEmail} disabled={loading}>
